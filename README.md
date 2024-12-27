@@ -17,3 +17,7 @@ To generate the the convergence plot for the two integration schemes, use:
 Below are the plots of the particle's trajectory for different forms of magnetic field. Only the field's magnitude is variable, its orientation is always orthogonal to the plot's plane, and directed towards us.
 
 ![constant](./figures/constant_field.png)
+![v-shape](./figures/v-shape_field.png)
+![linear](./figures/linear_field.png)
+![parabolic](./figures/parabolic_field.png)
+![step](./figures/step_field.png)
