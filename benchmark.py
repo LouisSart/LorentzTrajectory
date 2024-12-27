@@ -52,8 +52,8 @@ if __name__ == "__main__":
     
     plt.plot(dts, c_dist, label="Centered scheme")
     plt.plot(dts, v_dist, label="Verlet scheme")
-    # plt.xscale('log')
-    # plt.yscale('log')
+    plt.xscale('log')
+    plt.yscale('log')
     plt.gca().invert_xaxis()  # Reverse the x-axis
     plt.title('Convergence of Centered and Verlet Schemes')
     plt.xlabel('Time Step (s)')  # Add x-axis label
