@@ -25,7 +25,7 @@ def exact(V0, tmax, dt):
 def error(traj_1, traj_2):
     def dist(p1, p2):
         return ((p1.x - p2.x)**2 + (p1.y - p2.y)**2)**.5
-    return sum([dist(p1, p2) for p1, p2 in zip(traj_1, traj_2)])
+    return sum(dist(p1, p2) for p1, p2 in zip(traj_1, traj_2))
 
 
 if __name__ == "__main__":
