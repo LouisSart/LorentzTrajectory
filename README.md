@@ -46,10 +46,10 @@ $$\begin{align}
 ### Central finite differences
 
 $$\begin{align}
-    v_x^{n+1} = v_x^{n-1} + 2dt \frac{qB(x_n,y_n)}{m} v_y^n \\
-    v_y^{n+1} = v_y^{n-1} - 2dt \frac{qB(x_n,y_n)}{m} v_x^n \\
-    x_{n+1} = x_n + dt v_x^n
-    y_{n+1} = y_n + dt v_y^n
+    v_x^{n+1} &= v_x^{n-1} + 2dt \frac{qB(x_n,y_n)}{m} v_y^n \\
+    v_y^{n+1} &= v_y^{n-1} - 2dt \frac{qB(x_n,y_n)}{m} v_x^n \\
+    x_{n+1} &= x_n + dt v_x^n \\
+    y_{n+1} &= y_n + dt v_y^n
 \end{align}$$
 
 This scheme is of order 1 and requires two integrations steps. The initial solution at time dt is set using one Euler step at the beginning. It is reversible and preserves cinetic energy.
@@ -59,15 +59,21 @@ This scheme is of order 1 and requires two integrations steps. The initial solut
 Verlet's one-step method in its vector form can be written as follows:
 
 $$\begin{align}
-    X_{n+1} = X_n + dt V_n + \frac{dt^2}{2} A_n \\
-    V_{n+1} = V_n + \frac{dt}{2} (A_n + A_{n+1})
+    X_{n+1} &= X_n + dt V_n + \frac{dt^2}{2} A_n \\
+    V_{n+1} &= V_n + \frac{dt}{2} (A_n + A_{n+1})
 \end{align}$$
 
-where $a_n$ is the acceleration at $x_n$: 
-$$a_n = \frac{qB(x_n, y_n)}{m} \begin{smallmatrix}
-  0 & -1\\
-  1 & 0
-\end{smallmatrix} v_n$
+where $A_n$ is the acceleration at $x_n$: 
+
+$$ A_n = \frac{qB(x_n, y_n)}{m} \left(\begin{array}{cc} 0 & 1 \\\ -1 & 0 \end{array}\right) V_n = M(x_n, y_n)V_n$$
+
+Thus the iteration step on $V$ can be rewritten as:
+
+$$ \left( I_2 - \frac{dt}{2}M(x_{n+1}, y_{n+1}) \right)V_{n+1} = V_n + \frac{dt}{2} A_n $$
+
+$V_{n+1}$ is then computed by solving the $2 \times 2$ linear system above.
+
+This method is of the same order as the centered difference scheme from the previous paragraph and preserves the cinetic energy as well. These two methods differ by a factor of about $10$ in terms of norm-2 error, meaning we can use a greater $dt$ with Verlet's step and reduce computation cost.
 
 ## Results
 
