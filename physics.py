@@ -24,12 +24,14 @@ def B_cube(x, y):
     return B_const() * x**3 # x**3 magnetic field
 
 def B_abs(x, y):
-    return abs(B_const() * x) # symetrical linear magnetic field
+    return abs(B_const() * x) # symmetrical linear magnetic field
 
 def omega(x, y, B):
+    # Parameter in rad/s in the differential equation
     return q * B(x, y) / m
 
 def M(x, y, B):
+    # Matrix such that dv/dt = M * v
     return omega(x, y, B) * np.array([[0, 1.0], [-1.0, 0]])
 
 def a(p, B):

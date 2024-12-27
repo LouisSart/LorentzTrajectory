@@ -59,6 +59,8 @@ if __name__ == "__main__":
     fig.savefig("constant_field")
 
     ### Step magnetic field ###
+    # Smaller dt value is necessary for accuracy in step magnetic field simulation
+    # because of the magnetic field's discontinuity
 
     trajectory = simulation(p0, tmax*0.8, scheme=verlet_scheme, dt = 10**-11, B=B_step)
     fig, ax = plot_trajectory(trajectory, B_step)
