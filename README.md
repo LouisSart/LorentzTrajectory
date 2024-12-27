@@ -21,3 +21,9 @@ Below are the plots of the particle's trajectory for different forms of magnetic
 ![linear](./figures/linear_field.png)
 ![parabolic](./figures/parabolic_field.png)
 ![step](./figures/step_field.png)
+
+## Methods
+
+Two numerical methods are implemented here: a two-step central finite difference scheme and Verlet's method. Both are consistent and stable (I think Verlet's method is unconditionnally stable in our case). They are order one methods, see below their convergence graphs:
+
+![convergence](./convergence.png)
