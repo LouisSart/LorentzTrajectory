@@ -8,13 +8,13 @@ You will need numpy and matplotlib to run the code, it is all Python. To generat
 
     python3 plot.py
 
-To generate the the convergence plot for the two integration schemes, use:
+To generate the convergence plot for the two integration schemes, use:
 
     python3 benchmark.py
 
 ## Equations
 
-A particle of charge $q$ is launched at speed $\vec{V_0}$ (included in plane $Oxy$) from point $(0, 0)$ at time $t=0$. The magnetic field in the area is orthogonal to the trajectories's plane, and directed towards us : $\vec{B} = B(x, y) \vec{u_z}$. The force that drives the particle's movement is Lorentz' force : 
+A particle of charge $q$ is launched at speed $\vec{V_0}$ (included in plane $Oxy$) from point $(0, 0)$ at time $t=0$. The magnetic field in the area is orthogonal to the trajectory's plane, and directed towards us : $\vec{B} = B(x, y) \vec{u_z}$. The force that drives the particle's movement is Lorentz' force :
 
 $$\vec{F}_{Lorentz} = q\vec{v} \wedge \vec{B} $$
 
