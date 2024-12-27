@@ -16,11 +16,11 @@ def euler(p, pp, dt, B):
     # dt : time step
     # B : magnetic field function
     
-    vx = p.vx + 2 * omega(p.x, p.y, B) * dt * p.vy
-    vy = p.vy - 2 * omega(p.x, p.y, B) * dt * p.vx
+    vx = p.vx + omega(p.x, p.y, B) * dt * p.vy
+    vy = p.vy - omega(p.x, p.y, B) * dt * p.vx
 
-    x = p.x + dt * vx
-    y = p.y + dt * vy
+    x = p.x + dt * p.vx
+    y = p.y + dt * p.vy
 
     return Particle((x, y), (vx, vy))
 

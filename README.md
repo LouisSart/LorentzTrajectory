@@ -28,15 +28,47 @@ $$ \begin{align}
     \partial_t y &= v_y
     \end{align} $$
 
+Since Lorentz' force work is zero in the absence of an electric field, conservation of the cinetic energy is guaranteed. The particle is only going to be deflected, but not accelerated or slowed in its motion. This means we need a conservative scheme if possible.
+
+Below are three possible schemes that can be used in the code.
+
 ### Euler scheme
 
-Most simple scheme for this equation is Euler's scheme. It is of order 1 but unfortunately it doesn't preserve cinetic energy because it is not reversible.
+Most simple scheme for this equation is Euler's scheme. It is of order 1 and doesn't preserve cinetic energy because it is not reversible.
 
-$$ \begin{align}
-    v_x^{n+1} = v_x^{n} + dt \frac{qB(x_n,y_n)}{m} v_y^n 
-    v_y^{n+1} = v_y^{n} - dt \frac{qB(x_n,y_n)}{m} v_x^n 
-\end{align}
-$$
+$$\begin{align}
+    v_x^{n+1} = v_x^{n} + dt \frac{qB(x_n,y_n)}{m} v_y^n \\
+    v_y^{n+1} = v_y^{n} - dt \frac{qB(x_n,y_n)}{m} v_x^n \\
+    x_{n+1} = x_n + dt v_x^n
+    y_{n+1} = y_n + dt v_y^n
+\end{align}$$
+
+### Central finite differences
+
+$$\begin{align}
+    v_x^{n+1} = v_x^{n-1} + 2dt \frac{qB(x_n,y_n)}{m} v_y^n \\
+    v_y^{n+1} = v_y^{n-1} - 2dt \frac{qB(x_n,y_n)}{m} v_x^n \\
+    x_{n+1} = x_n + dt v_x^n
+    y_{n+1} = y_n + dt v_y^n
+\end{align}$$
+
+This scheme is of order 1 and requires two integrations steps. The initial solution at time dt is set using one Euler step at the beginning. It is reversible and preserves cinetic energy.
+
+### Verlet's method
+
+Verlet's one-step method in its vector form can be written as follows:
+
+$$\begin{align}
+    X_{n+1} = X_n + dt V_n + \frac{dt^2}{2} A_n \\
+    V_{n+1} = V_n + \frac{dt}{2} (A_n + A_{n+1})
+\end{align}$$
+
+where $a_n$ is the acceleration at $x_n$: 
+$$a_n = \frac{qB(x_n, y_n)}{m} \begin{smallmatrix}
+  0 & -1\\
+  1 & 0
+\end{smallmatrix} v_n$
+
 ## Results
 
 Below are the plots of the particle's trajectory for different forms of magnetic field.
