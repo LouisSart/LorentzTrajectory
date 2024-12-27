@@ -8,7 +8,6 @@ def exact(V0, tmax, dt):
     # tmax : simulation real time duration
     # dt : time step
 
-    time = np.arange(0, tmax, dt)
     om = omega(0, 0, B_const)
     trajectory = [Particle((0, 0), (V0, 0))]
     t = dt
