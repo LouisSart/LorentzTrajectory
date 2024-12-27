@@ -16,18 +16,18 @@ To generate the the convergence plot for the two integration schemes, use:
 
 A particle of charge $q$ is launched at speed $\vec{V_0}$ (included in plane $Oxy$) from point $(0, 0)$ at time $t=0$. The magnetic field in the area is orthogonal to the trajectories's plane, and directed towards us : $\vec{B} = B(x, y) \vec{u_z}$. The force that drives the particle's movement is Lorentz' force : 
 
-$$\vec{F_{Lorentz}} = q\vec{v} \wedge \vec{B} $$
+$$\vec{F}_{Lorentz} = q\vec{v} \wedge \vec{B} $$
 
 
 Newton's third law yields the following system of ODEs:
 
 $$\left \lbrace 
-\begin{align}
+\begin{align*}
     \partial_t v_x &= \frac{qB(x,y)}{m} v_y \\
     \partial_t v_y &= -\frac{qB(x,y)}{m} v_x \\
     \partial_t x &= v_x \\
     \partial_t y &= v_y
-\end{align}
+\end{align*}
 \right.$$
 
 Since Lorentz' force work is zero in the absence of an electric field, conservation of the cinetic energy is guaranteed. The particle is only going to be deflected, but not accelerated or slowed in its motion. This means we need a conservative scheme if possible. Below are three possible schemes that are implemented in the code.
@@ -37,23 +37,23 @@ Since Lorentz' force work is zero in the absence of an electric field, conservat
 Most simple scheme for this equation is Euler's scheme. It is of order 1 and doesn't preserve cinetic energy because it is not reversible.
 
 $$\left \lbrace
-\begin{align}
+\begin{align*}
     v_x^{n+1} &= v_x^{n} + dt \frac{qB(x_n,y_n)}{m} v_y^n \\
     v_y^{n+1} &= v_y^{n} - dt \frac{qB(x_n,y_n)}{m} v_x^n \\
     x_{n+1} &= x_n + dt \  v_x^n \\
     y_{n+1} &= y_n + dt \  v_y^n
-\end{align}
+\end{align*}
 \right.$$
 
 ### Central finite differences
 
 $$\left \lbrace 
-\begin{align}
+\begin{align*}
     v_x^{n+1} &= v_x^{n-1} + 2dt \frac{qB(x_n,y_n)}{m} v_y^n \\
     v_y^{n+1} &= v_y^{n-1} - 2dt \frac{qB(x_n,y_n)}{m} v_x^n \\
     x_{n+1} &= x_n + dt \ v_x^n \\
     y_{n+1} &= y_n + dt \ v_y^n
-\end{align}
+\end{align*}
 \right.$$
 
 This scheme is of order 1 and requires two integrations steps. The initial solution at time dt is set using one Euler step at the beginning. It is reversible and preserves cinetic energy.
