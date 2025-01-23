@@ -81,7 +81,7 @@ $V_{n+1}$ is then computed by solving the $2 \times 2$ linear system above.
 
 This method is of the same order as the centered difference scheme from the previous paragraph and preserves the cinetic energy as well. These two methods differ by a factor of about $10$ in terms of norm-2 error, meaning we can use a greater $dt$ with Verlet's step and reduce computation cost. See convergence plots below:
 
-![convergence](./convergence.png)
+![convergence](./figures/convergence.png)
 
 ## Results
 
